@@ -7,8 +7,15 @@ function App() {
   useEffect(() => {
   fetch("https://weather-app-ba.onrender.com/api/weather?city=Hyderabad")
     .then((res) => res.json())
-    .then((data) => setWeather(data))
-    .catch((err) => console.error("Failed to fetch weather:", err));
+    .then((data) => {
+      console.log("Fetched data:", data);  // ✅ Confirm if you see this in console
+      if (data.cod === 200) {
+        setWeather(data);
+      } else {
+        console.error("API Error:", data.message);
+      }
+    })
+    .catch((err) => console.error("Fetch failed:", err));
 }, []);
 
 
