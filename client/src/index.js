@@ -5,11 +5,12 @@ function App() {
   const [weather, setWeather] = useState(null);
 
   useEffect(() => {
-  fetch("https://weather-app-ba.onrender.com/api/weather")
-
+  fetch("https://weather-app-ba.onrender.com/api/weather?city=Hyderabad")
     .then((res) => res.json())
-    .then((data) => console.log(data));
+    .then((data) => setWeather(data))
+    .catch((err) => console.error("Failed to fetch weather:", err));
 }, []);
+
 
 
   const containerStyle = {
