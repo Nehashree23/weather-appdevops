@@ -1,6 +1,20 @@
+# server/Dockerfile
 FROM node:18-alpine
+
+# Set working directory
 WORKDIR /app
-COPY . .
+
+# Copy package files first (for caching)
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
+
+# Copy the rest of the code
+COPY . .
+
+# Expose server port
 EXPOSE 5000
-CMD ["npm", "start"]
+
+# Start the server
+CMD ["node", "index.js"]
