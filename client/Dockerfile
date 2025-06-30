@@ -1,12 +1,16 @@
-# Build Stage
-FROM node:18-alpine AS build
+# client/Dockerfile
+
+FROM node:18-alpine as build
+
 WORKDIR /app
-COPY . .
+COPY package*.json ./
 RUN npm install
+COPY . .
 RUN npm run build
 
-# Serve Stage
+# Serve the build with nginx
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
-EXPOSE 80
+
+EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]
