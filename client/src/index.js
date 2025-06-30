@@ -5,12 +5,12 @@ function App() {
   const [weather, setWeather] = useState(null);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/weather`)
+  fetch("https://weather-app-ba.onrender.com/api/weather")
 
-      .then(res => res.json())
-      .then(data => setWeather(data))
-      .catch(err => console.error("Error:", err));
-  }, []);
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+}, []);
+
 
   const containerStyle = {
     fontFamily: "Arial, sans-serif",
