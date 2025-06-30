@@ -5,7 +5,8 @@ function App() {
   const [weather, setWeather] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/weather?city=Hyderabad")
+    fetch(`${process.env.REACT_APP_API_URL}/api/weather`)
+
       .then(res => res.json())
       .then(data => setWeather(data))
       .catch(err => console.error("Error:", err));
